@@ -10,17 +10,23 @@ html, body {
 
 .drag-and-drop-outer-container {
     background-color: blue;
-    /* height: 700px;
-    width: 700px; */
-
     height: 70%;
     width: 70%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .tile-side-bar-container {
     background-color: red;
+    width: 85%;
+    height: 45%;
 }
 
 .grid-build-container {
     background: purple;
+    width: 85%;
+    height: 45%;
 }
