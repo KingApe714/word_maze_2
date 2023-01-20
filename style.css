@@ -13,8 +13,8 @@ html, body {
     height: 90%;
     width: 90%;
 
-    max-width: 1000px;
-    max-height: 1000px;
+    max-width: 700px;
+    max-height: 700px;
     /* padding-bottom: 80%; */
 
     display: flex;
@@ -29,8 +29,8 @@ html, body {
     height: 45%; */
 
     height: 0;
-    width: 50%;
-    padding-bottom: 50%;
+    width: 70%;
+    padding-bottom: 70%;
 }
 
 .tile-side-bar-container {
