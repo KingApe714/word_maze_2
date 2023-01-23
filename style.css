@@ -27,7 +27,7 @@ html, body {
 .grid-build-outer-container {
     border: 1px solid black;
     width: 80%;
-    height: 60%;
+    height: 70%;
     display: flex;
     align-items: start;
     justify-content: center;
@@ -39,8 +39,8 @@ html, body {
     height: 45%; */
 
     height: 0;
-    width: 70%;
-    padding-bottom: 70%;
+    width: 80%;
+    padding-bottom: 80%;
 
     /* display: flex;
     justify-content: center;
