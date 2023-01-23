@@ -16,11 +16,21 @@ html, body {
     max-width: 700px;
     max-height: 700px;
     /* padding-bottom: 80%; */
-
+    
     display: flex;
+    /* flex-wrap: wrap-reverse; */
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+}
+
+.grid-build-outer-container {
+    border: 1px solid black;
+    width: 80%;
+    height: 60%;
+    display: flex;
+    align-items: start;
+    justify-content: center;
 }
 
 .grid-build-container {
@@ -31,6 +41,10 @@ html, body {
     height: 0;
     width: 70%;
     padding-bottom: 70%;
+
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
 }
 
 .tile-side-bar-container {
