@@ -10,9 +10,9 @@ html, body {
 
 .drag-and-drop-outer-container {
     padding-top: 30px;
-    display: grid;
-    justify-content: center;
-    align-items: start;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 
 
     background-color: blue;
@@ -48,8 +48,8 @@ html, body {
     height: 0;
     width: 80%;
 
-    max-width: 450px;
-    padding-bottom: min(450px, 80%);
+    max-width: 400px;
+    padding-bottom: min(400px, 80%);
 
     /* padding-bottom: 80%; */
 
@@ -60,7 +60,7 @@ html, body {
 
 .tile-side-bar-container {
     background-color: red;
-    width: 100%;
+    width: 80%;
     height: 10vh;
 }
 
