@@ -14,25 +14,14 @@ html, body {
     justify-content: space-evenly;
     align-items: center;
 
-
     background-color: blue;
     height: 90%;
     width: 90%;
-
-    /* max-width: 700px;
-    max-height: 700px; */
-    /* padding-bottom: 80%; */
-    
-    /* display: flex; */
-    /* flex-wrap: wrap-reverse; */
     flex-direction: column;
-    /* align-items: center;
-    justify-content: space-evenly; */
 }
 
 .grid-build-outer-container {
     border: 1px solid black;
-    /* padding-top: 30px; */
     width: 80vw;
     height: 65vh;
     display: flex;
@@ -42,25 +31,39 @@ html, body {
 
 .grid-build-container {
     background: purple;
-    /* width: 85%;
-    height: 45%; */
-
-    /* height: 0;
-    width: 80%; */
     height: 50vw;
     width: 50vw;
 
-    /* max-width: 400px;
-    padding-bottom: min(400px, 80%); */
-
-    /* max-width: 50vw;
-    padding-bottom: min(50vw, 80%); */
-
-    /* padding-bottom: 80%; */
-
-    /* display: flex;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center; */
+}
+
+.inner-grid-build-container {
+    width: 95%;
+    height: 95%;
+    border: 1px solid white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.grid-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 1px solid black;
+    height: 15%;
+    width: 100%;
+}
+
+.grid-cell {
+    height: 100%;
+    width: 15%;
+    border: 1px solid blue;
 }
 
 .tile-side-bar-container {
@@ -69,14 +72,9 @@ html, body {
     height: 10vh;
 }
 
-@media screen and (orientation: portrait) {
-    /* .drag-and-drop-outer-container {
-        align-items: center;
-    }
 
-    .grid-build-outer-container {
-        align-items: center;
-    } */
+
+@media screen and (orientation: portrait) {
 }
 
 @media screen and (orientation: landscape) {
