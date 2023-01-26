@@ -61,16 +61,10 @@ html, body {
 }
 
 .grid-cell {
-    cursor: move;
-
     height: 100%;
     width: 15%;
     border: 1px solid blue;
     background-color: white;
-}
-
-.grid-cell.dragging-cell {
-    opacity: 0.5;
 }
 
 .tile-side-bar-container {
@@ -83,51 +77,19 @@ html, body {
     justify-content: center;
 }
 
-.random-tile-outer-container {
-    background: purple;
-
+.random-tile {
     cursor: move;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
+    font-size: 15px;
     height: 60%;
     aspect-ratio: 1 / 1;
-}
-
-.random-tile-inner-container {
-    cursor: move;
-    border: 1px solid white;
+    border: 1px solid black;
     background-color: yellow;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    font-weight: 600;
-
-    position: absolute;
-
-    -webkit-user-select: none;
-    /* Safari */
-    -ms-user-select: none;
-    /* IE 10 and IE 11 */
-    user-select: none;
-    /* Standard syntax */
 }
 
-.random-tile {
-    width: 100%;
-    height: 100%;
-    border: 2px solid black;
-    background-color: black;
-    opacity: 0.2;
-
-    position: absolute;
-}
-
-.random-tile-outer-container.dragging-random-cell {
+.random-tile.dragging-random-cell {
     opacity: 0.5;
 }
 
