@@ -34,20 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         randomTile.classList.remove('dragging-random-cell');
     });
 
-    gridCells.forEach((gridCell, idx) => {
-        // console.log(gridCell.children.length);
-        // gridCell.addEventListener('dragstart', () => {
-        //     gridCell.classList.add('dragging-cell');
-
-        //     console.log(`dragging cell ${idx}`)
-        // });
-
-        // gridCell.addEventListener('dragend', () => {
-        //     gridCell.classList.remove('dragging-cell');
-
-        //     console.log('drag end')
-        // });
-
+    gridCells.forEach(gridCell => {
         gridCell.addEventListener('dragover', e => {
             e.preventDefault();
 
