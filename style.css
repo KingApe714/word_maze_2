@@ -61,18 +61,71 @@ html, body {
 }
 
 .grid-cell {
+    cursor: move;
+
     height: 100%;
     width: 15%;
     border: 1px solid blue;
+    background-color: white;
+}
+
+.grid-cell.dragging-cell {
+    opacity: 0.5;
 }
 
 .tile-side-bar-container {
     background-color: red;
     width: 80%;
     height: 10vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.random-tile-outer-container {
+    background: purple;
+    
+    cursor: move;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 60%;
+    aspect-ratio: 1 / 1;
+}
 
+.random-tile-inner-container {
+    cursor: move;
+    border: 1px solid white;
+    background-color: yellow;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 600;
+
+    position: absolute;
+
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+}
+
+.random-tile {
+    width: 100%;
+    height: 100%;
+    border: 2px solid black;
+    background-color: black;
+    opacity: 0.5;
+
+    position: absolute;
+}
 
 @media screen and (orientation: portrait) {
 }
