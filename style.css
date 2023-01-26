@@ -65,6 +65,10 @@ html, body {
     width: 15%;
     border: 1px solid blue;
     background-color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .tile-side-bar-container {

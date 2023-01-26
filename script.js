@@ -39,7 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
 
             const draggable = document.querySelector('.dragging-random-cell');
-            gridCell.appendChild(draggable)
+            if (gridCell.childNodes.length === 0) {
+                gridCell.appendChild(draggable)
+            }
         });
     })
 })
