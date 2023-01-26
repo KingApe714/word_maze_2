@@ -85,7 +85,7 @@ html, body {
 
 .random-tile-outer-container {
     background: purple;
-    
+
     cursor: move;
     display: flex;
     align-items: center;
@@ -122,9 +122,13 @@ html, body {
     height: 100%;
     border: 2px solid black;
     background-color: black;
-    opacity: 0.5;
+    opacity: 0.2;
 
     position: absolute;
+}
+
+.random-tile-outer-container.dragging-random-cell {
+    opacity: 0.5;
 }
 
 @media screen and (orientation: portrait) {
