@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     randomTile.addEventListener('touchmove', e => {
         let touchLocation = e.targetTouches[0];
 
-        console.log(touchLocation)
+        // console.log(touchLocation)
 
         randomTile.style.left = touchLocation.screenX + 'px';
         randomTile.style.top = touchLocation.screenY + 'px';
