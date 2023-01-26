@@ -39,8 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         console.log(touchLocation)
 
-        randomTile.style.left = touchLocation.pageX + 'px';
-        randomTile.style.top = touchLocation.pageY + 'px';
+        randomTile.style.left = touchLocation.screenX + 'px';
+        randomTile.style.top = touchLocation.screenY + 'px';
     })
 
     gridCells.forEach(gridCell => {
