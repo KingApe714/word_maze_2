@@ -52,6 +52,8 @@ html, body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+
+    /* position: relative; */
 }
 
 .grid-row {
@@ -108,8 +110,8 @@ html, body {
 }
 
 @media screen and (orientation: portrait) {
-
-    /* this is where the logic for the drag and drop should live */
+    .random-tile {
+    }
 }
 
 @media screen and (orientation: landscape) {

@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const randomTile = document.querySelector('.random-tile');
     const tileSideBarContainer = document.querySelector('.tile-side-bar-container');
 
+    //here is the logic for placing the tiles into the board and regenerating into the side bar
     const mutationObserver = new MutationObserver(entries => {
         if (entries[0].removedNodes.length) {
             const newRandomTile = document.createElement('div');
@@ -14,11 +15,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
             newRandomTile.addEventListener('dragstart', () => {
                 newRandomTile.classList.add('dragging-random-cell');
-            })
+            });
 
             newRandomTile.addEventListener('dragend', () => {
                 newRandomTile.classList.remove('dragging-random-cell');
-            })
+            });
+
+            newRandomTile.addEventListener('touchstart', () => {
+                newRandomTile.classList.add('dragging-random-cell');
+            });
+
+            newRandomTile.addEventListener('touchend', () => {
+                newRandomTile.classList.remove('dragging-random-cell');
+            });
 
             tileSideBarContainer.appendChild(newRandomTile)
         }
@@ -34,7 +43,16 @@ document.addEventListener('DOMContentLoaded', () => {
         randomTile.classList.remove('dragging-random-cell');
     });
 
+    randomTile.addEventListener('touchstart', () => {
+        randomTile.classList.add('dragging-random-cell');
+    });
+
+    randomTile.addEventListener('touchend', () => {
+        randomTile.classList.remove('dragging-random-cell');
+    });
+
     randomTile.addEventListener('touchmove', e => {
+        // e.preventDefault();
         let touchLocation = e.targetTouches[0];
 
         // console.log(touchLocation)
@@ -44,6 +62,14 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     gridCells.forEach(gridCell => {
+        gridCell.addEventListener('touchmove', e => {
+            e.preventDefault();
+
+            const draggable = document.querySelector('.dragging-random-cell');
+            if (gridCell.childNodes.length === 0) {
+                gridCell.appendChild(draggable)
+            }
+        })
         gridCell.addEventListener('dragover', e => {
             e.preventDefault();
 
