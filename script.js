@@ -34,6 +34,15 @@ document.addEventListener('DOMContentLoaded', () => {
         randomTile.classList.remove('dragging-random-cell');
     });
 
+    randomTile.addEventListener('touchmove', e => {
+        let touchLocation = e.targetTouches[0];
+
+        console.log(touchLocation)
+
+        randomTile.style.left = touchLocation.pageX + 'px';
+        randomTile.style.top = touchLocation.pageY + 'px';
+    })
+
     gridCells.forEach(gridCell => {
         gridCell.addEventListener('dragover', e => {
             e.preventDefault();
