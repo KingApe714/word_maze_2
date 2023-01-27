@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //here is the logic for placing the tiles into the board and regenerating into the side bar
     const mutationObserver = new MutationObserver(entries => {
+        console.log(entries)
+
         if (entries[0].removedNodes.length) {
             const newRandomTile = document.createElement('div');
             newRandomTile.className = 'random-tile';
@@ -33,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 
-    mutationObserver.observe(tileSideBarContainer, { childList: true })
+    mutationObserver.observe(tileSideBarContainer, { childList: true });
 
     randomTile.addEventListener('dragstart', () => {
         randomTile.classList.add('dragging-random-cell');
@@ -61,9 +63,16 @@ document.addEventListener('DOMContentLoaded', () => {
         randomTile.style.top = touchLocation.screenY + 'px';
     })
 
-    gridCells.forEach(gridCell => {
+    gridCells.forEach((gridCell, idx) => {
         gridCell.addEventListener('touchmove', e => {
             e.preventDefault();
+
+            console.log(`moving over me ${idx}`)
+        });
+        gridCell.addEventListener('touchend', e => {
+            e.preventDefault();
+
+            console.log(`ended touch here ${idx}`)
 
             const draggable = document.querySelector('.dragging-random-cell');
             if (gridCell.childNodes.length === 0) {
@@ -78,5 +87,5 @@ document.addEventListener('DOMContentLoaded', () => {
                 gridCell.appendChild(draggable)
             }
         });
-    })
-})
+    });
+});
