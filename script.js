@@ -11,7 +11,7 @@ body.addEventListener("touchend", (e) => drop(e), { passive: false });
 
 // console.log(body);
 
-// console.log("testing");
+console.log("testing");
 
 let drg, drgT, drgL, drgB, drgR;
 
