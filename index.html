@@ -1,74 +1,136 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <!-- <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-</head>
-<body>
-    <div class="drag-and-drop-outer-container">
-        <div class="grid-build-outer-container">
-            <div class="grid-build-container">
-                <div class="inner-grid-build-container">
-                    <div class="grid-row">
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                    </div>
-                </div>
-            </div>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="game-container">
+      <div class="board">
+        <div class="board-row">
+          <div class="dropbox" id="dropbox"></div>
+          <div class="dropbox" id="dropbox"></div>
+          <div class="dropbox" id="dropbox"></div>
+          <div class="dropbox" id="dropbox"></div>
+          <div class="dropbox" id="dropbox"></div>
         </div>
-        <div class="tile-side-bar-container">
+        <div class="board-row">
+          <div class="dropbox" id="dropbox"></div>
+          <div class="dropbox" id="dropbox"></div>
+          <div class="dropbox" id="dropbox"></div>
+          <div class="dropbox" id="dropbox"></div>
+          <div class="dropbox" id="dropbox"></div>
         </div>
-        <div class="random-tile" draggable="true">
-            ?
+        <div class="board-row">
+          <div class="dropbox" id="dropbox"></div>
+          <div class="dropbox" id="dropbox"></div>
+          <div class="dropbox" id="dropbox"></div>
+          <div class="dropbox" id="dropbox"></div>
+          <div class="dropbox" id="dropbox"></div>
         </div>
+        <div class="board-row">
+          <div class="dropbox" id="dropbox"></div>
+          <div class="dropbox" id="dropbox"></div>
+          <div class="dropbox" id="dropbox"></div>
+          <div class="dropbox" id="dropbox"></div>
+          <div class="dropbox" id="dropbox"></div>
+        </div>
+        <div class="board-row">
+          <div class="dropbox" id="dropbox"></div>
+          <div class="dropbox" id="dropbox"></div>
+          <div class="dropbox" id="dropbox"></div>
+          <div class="dropbox" id="dropbox"></div>
+          <div class="dropbox" id="dropbox"></div>
+        </div>
+      </div>
+      <div class="dragbox-outer-container">
+        <div class="dragbox-top-container">
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">A</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">B</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">C</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">D</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">E</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">F</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">G</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">H</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">I</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">J</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">K</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">L</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">M</div>
+          </div>
+        </div>
+        <div class="dragbox-bottom-container">
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">N</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">O</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">P</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">Q</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">R</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">S</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">T</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">U</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">V</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">W</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">X</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">Y</div>
+          </div>
+          <div class="dragbox-cont">
+            <div id="dragbox" draggable="true">Z</div>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
