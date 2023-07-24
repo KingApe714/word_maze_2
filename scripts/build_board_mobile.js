@@ -108,6 +108,12 @@ export const mobileDragDrop = (root) => {
 
     //Update the clue container as the tiles are being placed
     const clueContainer = document.querySelector(".clue-container");
+    const innerClueContainer = document.createElement("div");
+    innerClueContainer.className = "inner-clue-container";
+    if (clueContainer.hasChildNodes()) {
+      //remove the inner container every time a tile is dropped
+      clueContainer.removeChild(clueContainer.firstChild);
+    }
 
     const tiles = Array.from(dropboxes).map((ele) =>
       ele.firstChild ? ele.firstChild.innerHTML : null
@@ -131,7 +137,9 @@ export const mobileDragDrop = (root) => {
       const wordContainer = document.createElement("div");
       wordContainer.innerHTML = word;
       wordContainer.className = "word-container";
-      clueContainer.appendChild(wordContainer);
+      innerClueContainer.appendChild(wordContainer);
     }
+
+    clueContainer.appendChild(innerClueContainer);
   }
 };
