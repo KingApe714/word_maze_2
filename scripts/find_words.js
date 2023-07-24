@@ -6,7 +6,7 @@ export const getDictionay = async () => {
   return dictionary;
 };
 
-export const findWords = async (board, root) => {
+export const findWords = (board, root) => {
   const foundWords = new Set();
 
   for (let i = 0; i < board.length; i++) {
@@ -49,7 +49,7 @@ const dfs = (root, board, i, j, foundWords) => {
   return;
 };
 
-export const buildTrie = async (words) => {
+export const buildTrie = (words) => {
   const root = new Node(null);
 
   for (let word of words) {

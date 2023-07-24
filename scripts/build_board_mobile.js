@@ -14,7 +14,7 @@ export const mobileDragDrop = (root) => {
 
   let lastDropbox;
 
-  function dragStart(evt) {
+  const dragStart = (evt) => {
     currentTile = evt.target;
 
     if (currentTile.getAttribute("draggable") === "true") {
@@ -23,9 +23,9 @@ export const mobileDragDrop = (root) => {
     } else {
       avail = "";
     }
-  }
+  };
 
-  function drag(evt) {
+  const drag = (evt) => {
     if (avail === "available") {
       currentTile.style.position = "absolute";
       currentTile.style.left = `${
@@ -98,13 +98,16 @@ export const mobileDragDrop = (root) => {
           const parentNode = currentTile.parentNode;
           parentNode.removeChild(parentNode.lastElementChild);
         }
+
+        //run this function since there won't be a cell to drop after this logic is run
+        populateClueContainer(dropboxes, root);
       }
     }
 
     evt.preventDefault();
-  }
+  };
 
-  async function drop() {
+  const drop = () => {
     //I am dragging a draggable tile
     if (avail === "available") {
       //add the regular color back to the cell
@@ -128,5 +131,5 @@ export const mobileDragDrop = (root) => {
 
     //Update the clue container as the tiles are being placed
     populateClueContainer(dropboxes, root);
-  }
+  };
 };

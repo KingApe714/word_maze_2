@@ -3,7 +3,7 @@ import { populateClueContainer } from "./clue_container.js";
 export const desktopDragDrop = (root) => {
   const dropboxes = document.querySelectorAll("#dropbox");
   const dragboxes = document.querySelectorAll("#dragbox");
-  const garbage = document.querySelector("garbage-icon");
+  const garbage = document.querySelector(".garbage-icon");
   let currentBox;
 
   for (let dragbox of dragboxes) {
@@ -52,4 +52,9 @@ export const desktopDragDrop = (root) => {
       }
     });
   }
+
+  //logic for dragging over the trash bin
+  garbage.addEventListener("mousemove", () => {
+    console.log("mouse move!");
+  });
 };
