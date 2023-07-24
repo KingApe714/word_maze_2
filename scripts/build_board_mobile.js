@@ -1,6 +1,8 @@
-//the challenge with this file is that it is not dragging or dropping in a neater way
+import { findWords } from "./find_words.js";
 
-export const mobileDragDrop = () => {
+// console.log(findWords);
+
+export const mobileDragDrop = (root) => {
   const dropboxes = document.querySelectorAll("#dropbox");
   const body = document.body;
 
@@ -67,7 +69,7 @@ export const mobileDragDrop = () => {
 
             dropbox.appendChild(newTile);
 
-            //
+            //snap back feature
             if (!lastDropbox) {
               lastDropbox = dropbox;
             } else {
@@ -82,12 +84,10 @@ export const mobileDragDrop = () => {
     evt.preventDefault();
   }
 
-  function drop() {
-    // update on drop
-
+  async function drop() {
     //I am dragging a draggable tile
     if (avail === "available") {
-      //
+      //add the regular color back to the cell
       if (lastDropbox) {
         lastDropbox.childNodes[0].classList.remove("dragging-cell");
       }
@@ -98,13 +98,40 @@ export const mobileDragDrop = () => {
       ) {
         currentTile.style.position = "";
       } else {
-        //
         const parent = currentTile.parentNode;
         parent.removeChild(parent.lastElementChild);
       }
 
       currentTile.classList.remove("dragging-cell");
       lastDropbox = null;
+    }
+
+    //Update the clue container as the tiles are being placed
+    const clueContainer = document.querySelector(".clue-container");
+
+    const tiles = Array.from(dropboxes).map((ele) =>
+      ele.firstChild ? ele.firstChild.innerHTML : null
+    );
+
+    const matrix = [];
+    let innerArray = [];
+    //need to convert this into a 5 x 5 matrix
+    for (let i = 0; i < tiles.length; i++) {
+      innerArray.push(tiles[i]);
+
+      if (innerArray.length === 5) {
+        matrix.push(innerArray);
+        innerArray = [];
+      }
+    }
+
+    const foundWords = await findWords(matrix, root);
+
+    for (let word of foundWords) {
+      const wordContainer = document.createElement("div");
+      wordContainer.innerHTML = word;
+      wordContainer.className = "word-container";
+      clueContainer.appendChild(wordContainer);
     }
   }
 };

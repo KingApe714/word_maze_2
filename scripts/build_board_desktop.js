@@ -1,4 +1,4 @@
-export const desktopDragDrop = () => {
+export const desktopDragDrop = (root) => {
   const dropboxes = document.querySelectorAll("#dropbox");
   const dragboxes = document.querySelectorAll("#dragbox");
   let currentBox;
