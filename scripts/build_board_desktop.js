@@ -1,3 +1,5 @@
+import { populateClueContainer } from "./clue_container.js";
+
 export const desktopDragDrop = (root) => {
   const dropboxes = document.querySelectorAll("#dropbox");
   const dragboxes = document.querySelectorAll("#dragbox");
@@ -12,6 +14,9 @@ export const desktopDragDrop = (root) => {
 
     dragbox.addEventListener("dragend", () => {
       dragbox.classList.remove("dragging-cell");
+
+      //Update the clue container as the tiles are being placed
+      populateClueContainer(dropboxes, root);
     });
   }
 
