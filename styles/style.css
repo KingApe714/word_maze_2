@@ -57,7 +57,7 @@ body {
   border: 1px solid blue;
   border-radius: 15px;
   width: 900px;
-  height: 200px;
+  height: 370px;
 }
 
 .dragbox-top-container,
@@ -106,4 +106,10 @@ body {
 .word-container {
   padding: 10px;
   font-size: 20px;
+}
+
+.garbage-icon {
+  width: 100px;
+  border: 1px solid black;
+  border-radius: 20px;
 }

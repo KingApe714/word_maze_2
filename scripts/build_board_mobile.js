@@ -77,6 +77,28 @@ export const mobileDragDrop = (root) => {
           }
         }
       }
+
+      //Logic for throwing out the current tile that I am holding onto
+      const garbage = document.querySelector(".garbage-icon");
+      const garbageItem = garbage.getBoundingClientRect();
+      let grbT = garbageItem.top,
+        grbL = garbageItem.left,
+        grbB = garbageItem.bottom,
+        grbR = garbageItem.right;
+
+      //I know that user has dragged over the garbage bin
+      if (grbT < drgT && grbL < drgL && grbB > drgB && grbR > drgR) {
+        //If I've hovered over a dropbox
+        if (lastDropbox) {
+          lastDropbox.removeChild(lastDropbox.lastElementChild);
+          lastDropbox = null;
+        }
+        //ensure that the last tile that I am pulling from is a dropbox
+        if (currentTile.parentNode.className !== "dragbox-cont") {
+          const parentNode = currentTile.parentNode;
+          parentNode.removeChild(parentNode.lastElementChild);
+        }
+      }
     }
 
     evt.preventDefault();
