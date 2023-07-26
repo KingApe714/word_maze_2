@@ -52,7 +52,23 @@ export const desktopDragDrop = (root) => {
   }
 
   //logic for dragging over the trash bin
-  garbage.addEventListener("mousemove", () => {
-    console.log("mouse move!");
+
+  garbage.addEventListener("dragover", (e) => {
+    e.preventDefault();
+
+    if (currentBox.parentNode.className === "dropbox") {
+      garbage.style.width = "200px";
+      garbage.style.height = "200px";
+    }
+  });
+
+  garbage.addEventListener("drop", (e) => {
+    e.preventDefault();
+
+    if (currentBox.parentNode.className === "dropbox") {
+      garbage.style.width = "100px";
+      garbage.style.height = "100px";
+      garbage.prepend(currentBox);
+    }
   });
 };

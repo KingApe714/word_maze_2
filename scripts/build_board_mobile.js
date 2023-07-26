@@ -79,29 +79,29 @@ export const mobileDragDrop = (root) => {
       }
 
       //Logic for throwing out the current tile that I am holding onto
-      const garbage = document.querySelector(".garbage-icon");
-      const garbageItem = garbage.getBoundingClientRect();
-      let grbT = garbageItem.top,
-        grbL = garbageItem.left,
-        grbB = garbageItem.bottom,
-        grbR = garbageItem.right;
+      // const garbage = document.querySelector(".garbage-icon");
+      // const garbageItem = garbage.getBoundingClientRect();
+      // let grbT = garbageItem.top,
+      //   grbL = garbageItem.left,
+      //   grbB = garbageItem.bottom,
+      //   grbR = garbageItem.right;
 
-      //I know that user has dragged over the garbage bin
-      if (grbT < drgT && grbL < drgL && grbB > drgB && grbR > drgR) {
-        //If I've hovered over a dropbox
-        if (lastDropbox) {
-          lastDropbox.removeChild(lastDropbox.lastElementChild);
-          lastDropbox = null;
-        }
-        //ensure that the last tile that I am pulling from is a dropbox
-        if (currentTile.parentNode.className !== "dragbox-cont") {
-          const parentNode = currentTile.parentNode;
-          parentNode.removeChild(parentNode.lastElementChild);
-        }
+      // //I know that user has dragged over the garbage bin
+      // if (grbT < drgT && grbL < drgL && grbB > drgB && grbR > drgR) {
+      //   //If I've hovered over a dropbox
+      //   if (lastDropbox) {
+      //     lastDropbox.removeChild(lastDropbox.lastElementChild);
+      //     lastDropbox = null;
+      //   }
+      //   //ensure that the last tile that I am pulling from is a dropbox
+      //   if (currentTile.parentNode.className !== "dragbox-cont") {
+      //     const parentNode = currentTile.parentNode;
+      //     parentNode.removeChild(parentNode.lastElementChild);
+      //   }
 
-        //run this function since there won't be a cell to drop after this logic is run
-        populateClueContainer(dropboxes, root);
-      }
+      //   //run this function since there won't be a cell to drop after this logic is run
+      //   populateClueContainer(dropboxes, root);
+      // }
     }
 
     evt.preventDefault();
@@ -127,6 +127,19 @@ export const mobileDragDrop = (root) => {
 
       currentTile.classList.remove("dragging-cell");
       lastDropbox = null;
+      //Logic for throwing out the current tile that I am holding onto
+      const garbage = document.querySelector(".garbage-icon");
+      const garbageItem = garbage.getBoundingClientRect();
+      let grbT = garbageItem.top,
+        grbL = garbageItem.left,
+        grbB = garbageItem.bottom,
+        grbR = garbageItem.right;
+
+      //I know that user has dropped over the garbage bin
+      if (grbT < drgT && grbL < drgL && grbB > drgB && grbR > drgR) {
+        console.log(lastDropbox);
+        garbage.appendChild(currentTile);
+      }
     }
 
     //Update the clue container as the tiles are being placed
