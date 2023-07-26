@@ -16,8 +16,6 @@ export const desktopDragDrop = (root) => {
     dragbox.addEventListener("dragend", () => {
       dragbox.classList.remove("dragging-cell");
 
-      //logic for deleting tile if over garbage icon
-
       //Update the clue container as the tiles are being placed
       populateClueContainer(dropboxes, root);
     });

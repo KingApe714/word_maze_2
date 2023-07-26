@@ -7,46 +7,75 @@ export const getDictionay = async () => {
 };
 
 export const findWords = (board, root) => {
-  const foundWords = new Set();
+  const foundWords = [];
 
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
       const chr = board[i][j];
 
+      //make sure that root starts at the character that I'm passing in
       if (chr in root.children) {
-        dfs(root, board, i, j, foundWords);
+        bfs(root.children[chr], board, i, j, foundWords);
       }
     }
   }
 
-  return Array.from(foundWords);
+  return foundWords;
 };
 
-const dfs = (root, board, i, j, foundWords) => {
-  if (i < 0 || i >= board.length || j < 0 || j >= board[0].length) return;
+const dirs = [
+  [-1, -1],
+  [-1, 0],
+  [-1, 1],
+  [0, 1],
+  [1, 1],
+  [1, 0],
+  [1, -1],
+  [0, -1],
+];
 
-  const chr = board[i][j];
-  if (!(chr in root.children)) return;
+const isInbounds = (board, i, j) => {
+  return i >= 0 && i < 5 && j >= 0 && j < 5;
+};
 
-  root = root.children[chr];
-  board[i][j] = "*";
+const bfs = (root, board, i, j, foundWords) => {
+  const queue = [
+    { coords: [i, j], trieNode: root, visited: new Set([`${i},${j}`]) },
+  ];
 
-  if (root.word) foundWords.add(root.word);
+  while (queue.length) {
+    const { coords, trieNode, visited } = queue.shift();
+    const [idx, jdx] = coords;
 
-  // horizontal and vertical traversal
-  dfs(root, board, i + 1, j, foundWords);
-  dfs(root, board, i - 1, j, foundWords);
-  dfs(root, board, i, j + 1, foundWords);
-  dfs(root, board, i, j - 1, foundWords);
+    if (trieNode.word) {
+      foundWords.push(trieNode.word);
+    }
 
-  // diagonal traversal
-  dfs(root, board, i + 1, j + 1, foundWords);
-  dfs(root, board, i + 1, j - 1, foundWords);
-  dfs(root, board, i - 1, j + 1, foundWords);
-  dfs(root, board, i - 1, j - 1, foundWords);
+    for (let dir of dirs) {
+      const [dirI, dirJ] = dir;
+      const [nextI, nextJ] = [dirI + idx, dirJ + jdx];
+      const nextCoords = `${nextI},${nextJ}`;
+      const char = board[nextI] ? board[nextI][nextJ] : null;
+      const nextNode = trieNode.children[char];
 
-  board[i][j] = chr;
-  return;
+      if (
+        !isInbounds(board, nextI, nextJ) ||
+        visited.has(nextCoords) ||
+        !(char in trieNode.children)
+      ) {
+        continue;
+      }
+
+      //ensure that every node path has its own visited Set
+      const nextVisited = new Set(visited);
+      nextVisited.add(nextCoords);
+      queue.push({
+        coords: [nextI, nextJ],
+        trieNode: nextNode,
+        visited: nextVisited,
+      });
+    }
+  }
 };
 
 export const buildTrie = (words) => {
