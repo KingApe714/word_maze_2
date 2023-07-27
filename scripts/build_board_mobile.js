@@ -28,6 +28,13 @@ export const mobileDragDrop = (root) => {
     if (currentTile.getAttribute("draggable") === "true") {
       avail = "available";
       currentTile.classList.add("dragging-cell");
+
+      console.log(currentTile.className);
+
+      if (currentTile.className.split(" ")[0] === "build-board-icon") {
+        currentTile.style.height = "50px";
+        currentTile.style.width = "50px";
+      }
     } else {
       avail = "";
     }
@@ -58,8 +65,16 @@ export const mobileDragDrop = (root) => {
           drpB = drp.bottom,
           drpR = drp.right;
 
+        let drgMidY = (drgB + drgT) / 2;
+        let drgMidX = (drgL + drgR) / 2;
+
         //this if statement ensures that I am inside of one of the coordinates of one of the dropboxes
-        if (drpT < drgT && drpL < drgL && drpB > drgB && drpR > drgR) {
+        if (
+          drpT < drgMidY &&
+          drpL < drgMidX &&
+          drpB > drgMidY &&
+          drpR > drgMidX
+        ) {
           //when I'm here, I know that I'm looking at an available dropbox
           if (dropbox.childNodes.length === 0) {
             const newTile = document.createElement("div");

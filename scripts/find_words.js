@@ -103,5 +103,3 @@ function Node(val) {
   this.children = {};
   this.word = null;
 }
-
-export default findWords;

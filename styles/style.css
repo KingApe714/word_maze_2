@@ -107,7 +107,9 @@ body {
   font-size: 20px;
 }
 
-.garbage-icon {
+.garbage-icon,
+.build-board-icon {
+  height: 100px;
   width: 100px;
   border: 1px solid black;
   border-radius: 20px;
