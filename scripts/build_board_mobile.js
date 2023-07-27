@@ -92,6 +92,9 @@ export const mobileDragDrop = (root) => {
         ) {
           garbage.style.height = "200px";
           garbage.style.width = "200px";
+        } else {
+          garbage.style.height = "100px";
+          garbage.style.width = "100px";
         }
       }
     }
@@ -123,13 +126,14 @@ export const mobileDragDrop = (root) => {
         grbL < drgL &&
         grbB > drgB &&
         grbR > drgR &&
-        currentTile.parentNode &&
-        currentTile.parentNode.className !== "dragbox-cont"
+        currentTile?.parentNode?.className !== "dragbox-cont"
       ) {
         garbage.appendChild(currentTile);
         garbage.removeChild(garbage.lastElementChild);
 
-        if (lastDropbox) {
+        console.log(lastDropbox);
+
+        if (lastDropbox?.children.length) {
           lastDropbox.removeChild(lastDropbox.lastElementChild);
         }
 
@@ -138,9 +142,9 @@ export const mobileDragDrop = (root) => {
       } else {
         lastDropbox = null;
       }
-    }
 
-    //Update the clue container as the tiles are being placed
-    populateClueContainer(dropboxes, root);
+      //Update the clue container as the tiles are being placed
+      populateClueContainer(dropboxes, root);
+    }
   };
 };
