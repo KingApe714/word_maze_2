@@ -68,7 +68,8 @@ export const desktopDragDrop = (root) => {
     if (currentBox.parentNode.className === "dropbox") {
       garbage.style.width = "100px";
       garbage.style.height = "100px";
-      garbage.prepend(currentBox);
+      garbage.appendChildpend(currentBox);
+      garbage.removeChild(garbage.lastElementChild);
     }
   });
 };

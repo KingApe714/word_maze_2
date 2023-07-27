@@ -14,6 +14,14 @@ export const mobileDragDrop = (root) => {
 
   let lastDropbox;
 
+  //Logic for throwing out the current tile that I am holding onto
+  const garbage = document.querySelector(".garbage-icon");
+  const garbageItem = garbage.getBoundingClientRect();
+  let grbT = garbageItem.top,
+    grbL = garbageItem.left,
+    grbB = garbageItem.bottom,
+    grbR = garbageItem.right;
+
   const dragStart = (evt) => {
     currentTile = evt.target;
 
@@ -26,6 +34,7 @@ export const mobileDragDrop = (root) => {
   };
 
   const drag = (evt) => {
+    evt.preventDefault();
     if (avail === "available") {
       currentTile.style.position = "absolute";
       currentTile.style.left = `${
@@ -42,11 +51,8 @@ export const mobileDragDrop = (root) => {
       drgR = drg.right;
 
       //this code is my attempt at appending the currentTile to a dropbox as I drag over it
-      // for (let dropbox of dropboxes) {
-      for (let i = 0; i < dropboxes.length; i++) {
-        let dropbox = dropboxes[i];
+      for (let dropbox of dropboxes) {
         let drp = dropbox.getBoundingClientRect();
-
         let drpT = drp.top,
           drpL = drp.left,
           drpB = drp.bottom,
@@ -56,9 +62,6 @@ export const mobileDragDrop = (root) => {
         if (drpT < drgT && drpL < drgL && drpB > drgB && drpR > drgR) {
           //when I'm here, I know that I'm looking at an available dropbox
           if (dropbox.childNodes.length === 0) {
-            let I = Math.floor(i / 5);
-            let J = i - 5 * I;
-
             const newTile = document.createElement("div");
             newTile.id = "dragbox";
             newTile.classList.add("dragging-cell");
@@ -71,47 +74,34 @@ export const mobileDragDrop = (root) => {
             if (!lastDropbox) {
               lastDropbox = dropbox;
             } else {
-              lastDropbox.removeChild(lastDropbox.lastElementChild);
+              if (lastDropbox.lastElementChild) {
+                lastDropbox.removeChild(lastDropbox.lastElementChild);
+              }
               lastDropbox = dropbox;
             }
           }
         }
+
+        //I know that user has dropped over the garbage bin
+        if (
+          grbT < drgT &&
+          grbL < drgL &&
+          grbB > drgB &&
+          grbR > drgR &&
+          currentTile.parentNode.className !== "dragbox-cont"
+        ) {
+          garbage.style.height = "200px";
+          garbage.style.width = "200px";
+        }
       }
-
-      //Logic for throwing out the current tile that I am holding onto
-      // const garbage = document.querySelector(".garbage-icon");
-      // const garbageItem = garbage.getBoundingClientRect();
-      // let grbT = garbageItem.top,
-      //   grbL = garbageItem.left,
-      //   grbB = garbageItem.bottom,
-      //   grbR = garbageItem.right;
-
-      // //I know that user has dragged over the garbage bin
-      // if (grbT < drgT && grbL < drgL && grbB > drgB && grbR > drgR) {
-      //   //If I've hovered over a dropbox
-      //   if (lastDropbox) {
-      //     lastDropbox.removeChild(lastDropbox.lastElementChild);
-      //     lastDropbox = null;
-      //   }
-      //   //ensure that the last tile that I am pulling from is a dropbox
-      //   if (currentTile.parentNode.className !== "dragbox-cont") {
-      //     const parentNode = currentTile.parentNode;
-      //     parentNode.removeChild(parentNode.lastElementChild);
-      //   }
-
-      //   //run this function since there won't be a cell to drop after this logic is run
-      //   populateClueContainer(dropboxes, root);
-      // }
     }
-
-    evt.preventDefault();
   };
 
   const drop = () => {
     //I am dragging a draggable tile
     if (avail === "available") {
       //add the regular color back to the cell
-      if (lastDropbox) {
+      if (lastDropbox && lastDropbox.childNodes[0]) {
         lastDropbox.childNodes[0].classList.remove("dragging-cell");
       }
 
@@ -126,19 +116,27 @@ export const mobileDragDrop = (root) => {
       }
 
       currentTile.classList.remove("dragging-cell");
-      lastDropbox = null;
-      //Logic for throwing out the current tile that I am holding onto
-      const garbage = document.querySelector(".garbage-icon");
-      const garbageItem = garbage.getBoundingClientRect();
-      let grbT = garbageItem.top,
-        grbL = garbageItem.left,
-        grbB = garbageItem.bottom,
-        grbR = garbageItem.right;
 
       //I know that user has dropped over the garbage bin
-      if (grbT < drgT && grbL < drgL && grbB > drgB && grbR > drgR) {
-        console.log(lastDropbox);
+      if (
+        grbT < drgT &&
+        grbL < drgL &&
+        grbB > drgB &&
+        grbR > drgR &&
+        currentTile.parentNode &&
+        currentTile.parentNode.className !== "dragbox-cont"
+      ) {
         garbage.appendChild(currentTile);
+        garbage.removeChild(garbage.lastElementChild);
+
+        if (lastDropbox) {
+          lastDropbox.removeChild(lastDropbox.lastElementChild);
+        }
+
+        garbage.style.height = "100px";
+        garbage.style.width = "100px";
+      } else {
+        lastDropbox = null;
       }
     }
 
