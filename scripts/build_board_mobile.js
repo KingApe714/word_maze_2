@@ -1,8 +1,9 @@
 import { populateClueContainer } from "./clue_container.js";
+import { generateBoard } from "./find_words.js";
 
 export const mobileDragDrop = (root) => {
   const dragboxTopContainer = document.querySelector(".dragbox-top-container");
-  const dropboxes = document.querySelectorAll(".dropbox");
+  const dropboxes = Array.from(document.querySelectorAll(".dropbox"));
   const body = document.body;
 
   body.addEventListener("touchstart", (e) => dragStart(e), { passive: false });
@@ -72,6 +73,7 @@ export const mobileDragDrop = (root) => {
             newTile.classList.add("dragging-cell");
             newTile.draggable = "true";
             newTile.innerHTML = currentTile.innerHTML;
+            if (currentTile.id) newTile.id = currentTile.id;
 
             dropbox.appendChild(newTile);
 
@@ -131,22 +133,23 @@ export const mobileDragDrop = (root) => {
 
       //Add the build board button into the drag
       if (
-        currentTile.innerHTML === "?" &&
+        currentTile.id === "question-mark" &&
         dragboxTopContainer.lastElementChild.className !== "generate-board"
       ) {
-        const generateBoard = document.createElement("button");
-        generateBoard.className = "generate-board";
-        generateBoard.innerHTML = "GENERATE BOARD";
-        generateBoard.addEventListener(
+        const generateBoardButton = document.createElement("button");
+        generateBoardButton.className = "generate-board";
+        generateBoardButton.innerHTML = "GENERATE BOARD";
+        generateBoardButton.addEventListener(
           "touchstart",
           () => {
-            console.log("clicked on generate board");
+            generateBoard();
+            populateClueContainer(dropboxes, root);
           },
           {
             passive: false,
           }
         );
-        dragboxTopContainer.appendChild(generateBoard);
+        dragboxTopContainer.appendChild(generateBoardButton);
       }
 
       const garbageItem = garbage.getBoundingClientRect();
@@ -171,6 +174,16 @@ export const mobileDragDrop = (root) => {
 
         garbage.style.height = "100px";
         garbage.style.width = "100px";
+
+        //check to see if all question marks removed to remove generate board button
+        if (
+          !dropboxes.every(
+            (ele) => ele.firstElementChild?.id === "question-mark"
+          ) &&
+          dragboxTopContainer.lastElementChild.className === "generate-board"
+        ) {
+          dragboxTopContainer.removeChild(dragboxTopContainer.lastElementChild);
+        }
       } else {
         lastDropbox = null;
       }

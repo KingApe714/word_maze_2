@@ -108,17 +108,14 @@ body {
   font-size: 20px;
 }
 
-.garbage-icon {
+.garbage-icon,
+.generate-board {
   height: 100px;
   width: 100px;
   border: 1px solid black;
   border-radius: 20px;
 }
 
-.generate-board {
-  height: 100px;
-  width: 100px;
-  border: 1px solid black;
-  border-radius: 20px;
-  text-wrap: wrap;
+#question-mark {
+  border: 3px solid purple;
 }

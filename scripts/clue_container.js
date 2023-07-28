@@ -9,7 +9,7 @@ export const populateClueContainer = (dropboxes, root) => {
     clueContainer.removeChild(clueContainer.firstChild);
   }
 
-  const tiles = Array.from(dropboxes).map((ele) =>
+  const tiles = dropboxes.map((ele) =>
     ele.firstChild ? ele.firstChild.innerHTML : null
   );
 

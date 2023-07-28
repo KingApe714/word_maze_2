@@ -104,8 +104,16 @@ export const buildTrie = (words) => {
   return root;
 };
 
-export const generateBoard = (board) => {
+export const generateBoard = () => {
   //I need to loop through the board and populate the board with random tiles
   //then run the find words algo on the newly create board
-  board.querySelectorAll(".dropbox");
+  const board = document.querySelector(".board");
+  const randomTiles = Array.from(board.querySelectorAll("#question-mark"));
+
+  for (let randomTile of randomTiles) {
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const randomCharacter =
+      alphabet[Math.floor(Math.random() * alphabet.length)];
+    randomTile.innerHTML = randomCharacter;
+  }
 };
