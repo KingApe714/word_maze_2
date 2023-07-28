@@ -1,7 +1,8 @@
 import { populateClueContainer } from "./clue_container.js";
 
 export const mobileDragDrop = (root) => {
-  const dropboxes = document.querySelectorAll("#dropbox");
+  const dragboxTopContainer = document.querySelector(".dragbox-top-container");
+  const dropboxes = document.querySelectorAll(".dropbox");
   const body = document.body;
 
   body.addEventListener("touchstart", (e) => dragStart(e), { passive: false });
@@ -28,13 +29,6 @@ export const mobileDragDrop = (root) => {
     if (currentTile.getAttribute("draggable") === "true") {
       avail = "available";
       currentTile.classList.add("dragging-cell");
-
-      console.log(currentTile.className);
-
-      if (currentTile.className.split(" ")[0] === "build-board-icon") {
-        currentTile.style.height = "50px";
-        currentTile.style.width = "50px";
-      }
     } else {
       avail = "";
     }
@@ -42,6 +36,7 @@ export const mobileDragDrop = (root) => {
 
   const drag = (evt) => {
     evt.preventDefault();
+
     if (avail === "available") {
       currentTile.style.position = "absolute";
       currentTile.style.left = `${
@@ -78,7 +73,7 @@ export const mobileDragDrop = (root) => {
           //when I'm here, I know that I'm looking at an available dropbox
           if (dropbox.childNodes.length === 0) {
             const newTile = document.createElement("div");
-            newTile.id = "dragbox";
+            newTile.className = "dragbox";
             newTile.classList.add("dragging-cell");
             newTile.draggable = "true";
             newTile.innerHTML = currentTile.innerHTML;
@@ -119,12 +114,11 @@ export const mobileDragDrop = (root) => {
     //I am dragging a draggable tile
     if (avail === "available") {
       //add the regular color back to the cell
-      if (lastDropbox && lastDropbox.childNodes[0]) {
-        lastDropbox.childNodes[0].classList.remove("dragging-cell");
-      }
+      lastDropbox?.childNodes[0]?.classList.remove("dragging-cell");
 
       if (
         currentTile.parentNode.className === "dragbox-cont" ||
+        currentTile.parentNode.className === "question-mark-container" ||
         (currentTile.parentNode.className === "dropbox" && !lastDropbox)
       ) {
         currentTile.style.position = "";
@@ -134,6 +128,26 @@ export const mobileDragDrop = (root) => {
       }
 
       currentTile.classList.remove("dragging-cell");
+
+      //Add the build board button into the drag
+      if (
+        currentTile.innerHTML === "?" &&
+        dragboxTopContainer.lastElementChild.className !== "generate-board"
+      ) {
+        const generateBoard = document.createElement("button");
+        generateBoard.className = "generate-board";
+        generateBoard.innerHTML = "GENERATE BOARD";
+        generateBoard.addEventListener(
+          "touchstart",
+          () => {
+            console.log("clicked on generate board");
+          },
+          {
+            passive: false,
+          }
+        );
+        dragboxTopContainer.appendChild(generateBoard);
+      }
 
       //I know that user has dropped over the garbage bin
       if (
@@ -145,8 +159,6 @@ export const mobileDragDrop = (root) => {
       ) {
         garbage.appendChild(currentTile);
         garbage.removeChild(garbage.lastElementChild);
-
-        console.log(lastDropbox);
 
         if (lastDropbox?.children.length) {
           lastDropbox.removeChild(lastDropbox.lastElementChild);

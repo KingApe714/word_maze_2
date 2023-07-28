@@ -19,35 +19,6 @@ body {
   border-radius: 15px;
 }
 
-.dropbox {
-  height: 100px;
-  width: 100px;
-  border: 1px solid #000;
-  border-radius: 10px;
-  float: left;
-  margin: 10px;
-
-  /* this is some test code to center the tile into the cell */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#dragbox {
-  height: 50px;
-  width: 50px;
-  border: 1px solid #000;
-  border-radius: 10px;
-  float: left;
-  /* margin: 10px; */
-  background: #31d2b1;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 30;
-}
-
 .dragbox-outer-container {
   display: flex;
   align-items: center;
@@ -61,6 +32,7 @@ body {
 }
 
 .dragbox-top-container,
+.dragbox-mid-container,
 .dragbox-bottom-container {
   display: flex;
   align-items: center;
@@ -80,6 +52,35 @@ body {
   border: 1px solid red;
   width: 60px;
   height: 60px;
+}
+
+.dropbox {
+  height: 100px;
+  width: 100px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  float: left;
+  margin: 10px;
+
+  /* this is some test code to center the tile into the cell */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dragbox {
+  height: 50px;
+  width: 50px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  float: left;
+  /* margin: 10px; */
+  background: #31d2b1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30;
 }
 
 .dragging-cell {
@@ -107,8 +108,14 @@ body {
   font-size: 20px;
 }
 
-.garbage-icon,
-.build-board-icon {
+.garbage-icon {
+  height: 100px;
+  width: 100px;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.generate-board {
   height: 100px;
   width: 100px;
   border: 1px solid black;

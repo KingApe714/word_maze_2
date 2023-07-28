@@ -1,8 +1,9 @@
 import { populateClueContainer } from "./clue_container.js";
 
 export const desktopDragDrop = (root) => {
-  const dropboxes = document.querySelectorAll("#dropbox");
-  const dragboxes = document.querySelectorAll("#dragbox");
+  const dragboxTopContainer = document.querySelector(".dragbox-top-container");
+  const dropboxes = document.querySelectorAll(".dropbox");
+  const dragboxes = document.querySelectorAll(".dragbox");
   const garbage = document.querySelector(".garbage-icon");
   let currentBox;
 
@@ -16,6 +17,26 @@ export const desktopDragDrop = (root) => {
     dragbox.addEventListener("dragend", () => {
       dragbox.classList.remove("dragging-cell");
 
+      //Add the build board button into the drag
+      if (
+        currentBox.innerHTML === "?" &&
+        dragboxTopContainer.lastElementChild.className !== "generate-board"
+      ) {
+        const generateBoard = document.createElement("button");
+        generateBoard.className = "generate-board";
+        generateBoard.innerHTML = "GENERATE BOARD";
+        generateBoard.addEventListener(
+          "mousedown",
+          () => {
+            console.log("clicked on generate board");
+          },
+          {
+            passive: false,
+          }
+        );
+        dragboxTopContainer.appendChild(generateBoard);
+      }
+
       //Update the clue container as the tiles are being placed
       populateClueContainer(dropboxes, root);
     });
@@ -27,7 +48,7 @@ export const desktopDragDrop = (root) => {
 
       if (dropbox.childNodes.length === 0) {
         const newTile = document.createElement("div");
-        newTile.id = "dragbox";
+        newTile.className = "dragbox";
         newTile.draggable = "true";
         newTile.innerHTML = currentBox.innerHTML;
 
