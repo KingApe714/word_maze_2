@@ -21,30 +21,6 @@ export const desktopDragDrop = (root) => {
       //Update the clue container as the tiles are being placed
       populateClueContainer(dropboxes, root);
     });
-
-    dragbox.addEventListener("drop", () => {
-      console.log(currentTile);
-      //Add the build board button into the top container
-      if (
-        currentTile.id === "question-mark" &&
-        dragboxTopContainer.lastElementChild.className !== "generate-board"
-      ) {
-        const generateBoardButton = document.createElement("button");
-        generateBoardButton.className = "generate-board";
-        generateBoardButton.innerHTML = "GENERATE BOARD";
-        generateBoardButton.addEventListener(
-          "mousedown",
-          () => {
-            generateBoard();
-            populateClueContainer(dropboxes, root);
-          },
-          {
-            passive: false,
-          }
-        );
-        dragboxTopContainer.appendChild(generateBoardButton);
-      }
-    });
   }
 
   for (let dropbox of dropboxes) {
@@ -76,6 +52,29 @@ export const desktopDragDrop = (root) => {
         dropbox.appendChild(currentTile);
       }
     });
+
+    dropbox.addEventListener("drop", (e) => {
+      //Add the build board button into the top container
+      if (
+        currentTile.id === "question-mark" &&
+        dragboxTopContainer.lastElementChild.className !== "generate-board"
+      ) {
+        const generateBoardButton = document.createElement("button");
+        generateBoardButton.className = "generate-board";
+        generateBoardButton.innerHTML = "GENERATE BOARD";
+        generateBoardButton.addEventListener(
+          "mousedown",
+          () => {
+            generateBoard();
+            populateClueContainer(dropboxes, root);
+          },
+          {
+            passive: false,
+          }
+        );
+        dragboxTopContainer.appendChild(generateBoardButton);
+      }
+    });
   }
 
   //logic for dragging over the trash bin
@@ -101,9 +100,7 @@ export const desktopDragDrop = (root) => {
 
     //check to see if all question marks removed to remove generate board button
     if (
-      !dropboxes.every(
-        (ele) => ele.firstElementChild?.id === "question-mark"
-      ) &&
+      !dropboxes.some((ele) => ele.firstElementChild?.id === "question-mark") &&
       dragboxTopContainer.lastElementChild.className === "generate-board"
     ) {
       dragboxTopContainer.removeChild(dragboxTopContainer.lastElementChild);
