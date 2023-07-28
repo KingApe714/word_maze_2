@@ -177,7 +177,7 @@ export const mobileDragDrop = (root) => {
 
         //check to see if all question marks removed to remove generate board button
         if (
-          !dropboxes.every(
+          !dropboxes.some(
             (ele) => ele.firstElementChild?.id === "question-mark"
           ) &&
           dragboxTopContainer.lastElementChild.className === "generate-board"
