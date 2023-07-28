@@ -78,6 +78,12 @@ const bfs = (root, board, i, j, foundWords) => {
   }
 };
 
+function Node(val) {
+  this.val = val;
+  this.children = {};
+  this.word = null;
+}
+
 export const buildTrie = (words) => {
   const root = new Node(null);
 
@@ -98,8 +104,8 @@ export const buildTrie = (words) => {
   return root;
 };
 
-function Node(val) {
-  this.val = val;
-  this.children = {};
-  this.word = null;
-}
+export const generateBoard = (board) => {
+  //I need to loop through the board and populate the board with random tiles
+  //then run the find words algo on the newly create board
+  board.querySelectorAll(".dropbox");
+};

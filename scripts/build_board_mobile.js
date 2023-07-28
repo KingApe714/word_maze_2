@@ -17,11 +17,6 @@ export const mobileDragDrop = (root) => {
 
   //Logic for throwing out the current tile that I am holding onto
   const garbage = document.querySelector(".garbage-icon");
-  const garbageItem = garbage.getBoundingClientRect();
-  let grbT = garbageItem.top,
-    grbL = garbageItem.left,
-    grbB = garbageItem.bottom,
-    grbR = garbageItem.right;
 
   const dragStart = (evt) => {
     currentTile = evt.target;
@@ -92,6 +87,11 @@ export const mobileDragDrop = (root) => {
           }
         }
 
+        const garbageItem = garbage.getBoundingClientRect();
+        let grbT = garbageItem.top,
+          grbL = garbageItem.left,
+          grbB = garbageItem.bottom,
+          grbR = garbageItem.right;
         //I know that user has dropped over the garbage bin
         if (
           grbT < drgT &&
@@ -149,6 +149,11 @@ export const mobileDragDrop = (root) => {
         dragboxTopContainer.appendChild(generateBoard);
       }
 
+      const garbageItem = garbage.getBoundingClientRect();
+      let grbT = garbageItem.top,
+        grbL = garbageItem.left,
+        grbB = garbageItem.bottom,
+        grbR = garbageItem.right;
       //I know that user has dropped over the garbage bin
       if (
         grbT < drgT &&
