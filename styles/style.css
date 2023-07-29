@@ -94,6 +94,8 @@ body {
   width: 90%;
   height: 360px;
   border: 1px solid black;
+
+  overflow: auto;
 }
 
 .inner-clue-container {
@@ -101,8 +103,9 @@ body {
   flex-wrap: wrap;
   width: 100%;
   height: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  /* overflow: auto; */
+  /* overflow-y: scroll;
+  overflow-x: hidden; */
 }
 
 .word-container {
