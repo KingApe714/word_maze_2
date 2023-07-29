@@ -8,11 +8,12 @@ body {
 }
 
 .game-container {
+  border: 1px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  height: 1200px;
+  height: 1100px;
 }
 
 .board {
