@@ -4,11 +4,17 @@ import { generateBoard } from "./find_words.js";
 export const mobileDragDrop = (root) => {
   const dragboxTopContainer = document.querySelector(".dragbox-top-container");
   const dropboxes = Array.from(document.querySelectorAll(".dropbox"));
-  const body = document.body;
+  const gameContainer = document.querySelector(".game-container");
 
-  body.addEventListener("touchstart", (e) => dragStart(e), { passive: false });
-  body.addEventListener("touchmove", (e) => drag(e), { passive: false });
-  body.addEventListener("touchend", (e) => drop(e), { passive: false });
+  gameContainer.addEventListener("touchstart", (e) => dragStart(e), {
+    passive: false,
+  });
+  gameContainer.addEventListener("touchmove", (e) => drag(e), {
+    passive: false,
+  });
+  gameContainer.addEventListener("touchend", (e) => drop(e), {
+    passive: false,
+  });
 
   let drg, drgT, drgL, drgB, drgR;
 

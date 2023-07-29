@@ -2,6 +2,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .game-container {
@@ -88,7 +89,7 @@ body {
 }
 
 .clue-container {
-  width: 100%;
+  width: 90%;
   height: 200px;
   /* display: flex; */
   border: 1px solid black;
