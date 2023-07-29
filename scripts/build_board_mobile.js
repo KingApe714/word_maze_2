@@ -134,6 +134,9 @@ export const mobileDragDrop = (root) => {
       //Add the build board button into the drag
       if (
         currentTile.id === "question-mark" &&
+        dropboxes.some(
+          (ele) => ele?.lastElementChild?.id === "question-mark"
+        ) &&
         dragboxTopContainer.lastElementChild.className !== "generate-board"
       ) {
         const generateBoardButton = document.createElement("button");
