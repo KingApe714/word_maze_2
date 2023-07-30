@@ -1,3 +1,5 @@
+import { ancestoryPath } from "./ancestory_node.js";
+
 export const getDictionay = async () => {
   const response = await fetch("definitions.json");
   const data = await response.text();
@@ -8,19 +10,21 @@ export const getDictionay = async () => {
 
 export const findWords = (board, root) => {
   const foundWords = [];
+  const paths = [];
 
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
-      const chr = board[i][j];
+      const ancestoryNode = board[i][j];
+      const chr = ancestoryNode.val;
 
       //make sure that root starts at the character that I'm passing in
       if (chr in root.children) {
-        bfs(root.children[chr], board, i, j, foundWords);
+        bfs(root.children[chr], board, i, j, foundWords, paths);
       }
     }
   }
 
-  return foundWords;
+  return [foundWords, paths];
 };
 
 const dirs = [
@@ -38,7 +42,9 @@ const isInbounds = (board, i, j) => {
   return i >= 0 && i < 5 && j >= 0 && j < 5;
 };
 
-const bfs = (root, board, i, j, foundWords) => {
+//the visited set has the path from root node to leaf node
+//use this to create the ancestory node
+const bfs = (root, board, i, j, foundWords, paths) => {
   const queue = [
     { coords: [i, j], trieNode: root, visited: new Set([`${i},${j}`]) },
   ];
@@ -47,15 +53,19 @@ const bfs = (root, board, i, j, foundWords) => {
     const { coords, trieNode, visited } = queue.shift();
     const [idx, jdx] = coords;
 
+    //here is where I can create the ancestry node path
     if (trieNode.word) {
       foundWords.push(trieNode.word);
+      paths.push(visited);
+
+      ancestoryPath(board, visited);
     }
 
     for (let dir of dirs) {
       const [dirI, dirJ] = dir;
       const [nextI, nextJ] = [dirI + idx, dirJ + jdx];
       const nextCoords = `${nextI},${nextJ}`;
-      const char = board[nextI] ? board[nextI][nextJ] : null;
+      const char = board[nextI][nextJ].val;
       const nextNode = trieNode.children[char];
 
       if (

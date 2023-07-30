@@ -78,12 +78,17 @@ body {
   border: 1px solid #000;
   border-radius: 10px;
   float: left;
-  background: #31d2b1;
+  background-color: #31d2b1;
 
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 30px;
+}
+
+#question-mark {
+  border: 3px solid purple;
+  background-color: #e69122;
 }
 
 .dragging-cell {
@@ -109,6 +114,7 @@ body {
 }
 
 .word-container {
+  display: flex;
   padding: 10px;
   font-size: 20px;
 }
@@ -121,7 +127,13 @@ body {
   border-radius: 20px;
 }
 
-#question-mark {
-  border: 3px solid purple;
-  background-color: #e69122;
+.char-div {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 2px;
 }
