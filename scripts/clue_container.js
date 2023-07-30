@@ -45,8 +45,6 @@ export const populateClueContainer = (dropboxes, root) => {
         tile.id === "question-mark" ? "#e69122" : "#31d2b1";
       charDiv.innerHTML = tile.innerHTML;
 
-      console.log(tile.id);
-
       wordContainer.appendChild(charDiv);
     });
 

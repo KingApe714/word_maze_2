@@ -4,9 +4,15 @@ export function AncestoryNode(val, i, j, dropbox) {
   this.j = j;
   this.dropbox = dropbox;
   this.children = {};
+  this.complete = false;
+  this.found = false;
+  this.word = null;
+  this.definition = null;
+  this.wordContainer = null;
 }
 
-export const ancestoryPath = (board, visited) => {
+//I believe that the logic here is flawed in that it should check to see if the child already exists
+export const ancestoryPath = (board, visited, word) => {
   const path = Array.from(visited);
   const [rootI, rootJ] = path[0].split(",");
   let currentAncestor = board[rootI][rootJ];

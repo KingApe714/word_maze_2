@@ -58,21 +58,19 @@ const bfs = (root, board, i, j, foundWords, paths) => {
       foundWords.push(trieNode.word);
       paths.push(visited);
 
-      ancestoryPath(board, visited);
+      ancestoryPath(board, visited, trieNode.word);
     }
 
     for (let dir of dirs) {
       const [dirI, dirJ] = dir;
       const [nextI, nextJ] = [dirI + idx, dirJ + jdx];
       const nextCoords = `${nextI},${nextJ}`;
-      const char = board[nextI][nextJ].val;
+      const char = isInbounds(board, nextI, nextJ)
+        ? board[nextI][nextJ].val
+        : null;
       const nextNode = trieNode.children[char];
 
-      if (
-        !isInbounds(board, nextI, nextJ) ||
-        visited.has(nextCoords) ||
-        !(char in trieNode.children)
-      ) {
+      if (visited.has(nextCoords) || !(char in trieNode.children)) {
         continue;
       }
 
