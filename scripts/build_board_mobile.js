@@ -22,8 +22,9 @@ export const mobileDragDrop = (root) => {
 
   let lastDropbox;
 
-  //Logic for throwing out the current tile that I am holding onto
   const garbage = document.querySelector(".garbage-icon");
+  const clearBoard = document.querySelector(".clear-board-button");
+  const clueContainer = document.querySelector(".clue-container");
 
   const dragStart = (evt) => {
     currentTile = evt.target;
@@ -33,6 +34,18 @@ export const mobileDragDrop = (root) => {
       currentTile.classList.add("dragging-cell");
     } else {
       avail = "";
+    }
+
+    if (currentTile.className === "clear-board-button") {
+      for (let dropbox of dropboxes) {
+        if (dropbox.firstElementChild) {
+          dropbox.removeChild(dropbox.firstElementChild);
+        }
+      }
+
+      if (clueContainer.firstElementChild) {
+        clueContainer.removeChild(clueContainer.firstElementChild);
+      }
     }
   };
 

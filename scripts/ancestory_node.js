@@ -22,9 +22,16 @@ export const ancestoryPath = (board, visited, word) => {
     const [ancI, ancJ] = coords.split(",").map((ele) => Number(ele));
     const val = board[ancI][ancJ].val;
     const nextDropbox = board[ancI][ancJ].dropbox;
-    const nextAncestor = new AncestoryNode(val, ancI, ancJ, nextDropbox);
 
-    currentAncestor.children[coords] = nextAncestor;
-    currentAncestor = nextAncestor;
+    if (coords in currentAncestor.children) {
+      currentAncestor = currentAncestor.children[coords];
+    } else {
+      const nextAncestor = new AncestoryNode(val, ancI, ancJ, nextDropbox);
+      currentAncestor.children[coords] = nextAncestor;
+      currentAncestor = nextAncestor;
+    }
   }
+
+  currentAncestor.complete = true;
+  currentAncestor.word = word;
 };

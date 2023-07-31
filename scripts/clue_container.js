@@ -31,13 +31,19 @@ export const populateClueContainer = (dropboxes, root) => {
 
   const [foundWords, paths] = findWords(ancestoryMatrix, root);
 
+  //
   for (let path of paths) {
     const wordContainer = document.createElement("div");
     wordContainer.className = "word-container";
+    let node = null;
 
     path.forEach((coord) => {
       const [pathI, pathJ] = coord.split(",").map((ele) => Number(ele));
-      const node = ancestoryMatrix[pathI][pathJ];
+      if (node === null) {
+        node = ancestoryMatrix[pathI][pathJ];
+      } else {
+        node = node.children[coord];
+      }
       const tile = node.dropbox.firstChild;
       const charDiv = document.createElement("div");
       charDiv.className = "char-div";
@@ -48,6 +54,7 @@ export const populateClueContainer = (dropboxes, root) => {
       wordContainer.appendChild(charDiv);
     });
 
+    node.wordContainer = wordContainer;
     innerClueContainer.appendChild(wordContainer);
   }
 

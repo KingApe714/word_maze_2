@@ -120,9 +120,10 @@ body {
 }
 
 .garbage-icon,
+.clear-board-button,
 .generate-board {
-  height: 100px;
-  width: 100px;
+  height: 90px;
+  width: 90px;
   border: 1px solid black;
   border-radius: 20px;
 }
