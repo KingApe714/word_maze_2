@@ -11,7 +11,6 @@ export function AncestoryNode(val, i, j, dropbox) {
   this.wordContainer = null;
 }
 
-//I believe that the logic here is flawed in that it should check to see if the child already exists
 export const ancestoryPath = (board, visited, word) => {
   const path = Array.from(visited);
   const [rootI, rootJ] = path[0].split(",");
