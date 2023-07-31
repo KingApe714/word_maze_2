@@ -46,6 +46,10 @@ export const mobileDragDrop = (root) => {
       if (clueContainer.firstElementChild) {
         clueContainer.removeChild(clueContainer.firstElementChild);
       }
+
+      if (dragboxTopContainer.lastElementChild.className === "generate-board") {
+        dragboxTopContainer.removeChild(dragboxTopContainer.lastElementChild);
+      }
     }
   };
 
