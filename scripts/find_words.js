@@ -124,4 +124,11 @@ export const generateBoard = () => {
       alphabet[Math.floor(Math.random() * alphabet.length)];
     randomTile.innerHTML = randomCharacter;
   }
+
+  const bouncingBoxes = document.querySelectorAll(".bounce-7");
+
+  for (let box of bouncingBoxes) {
+    box.classList.remove("bounce-7");
+    box.style.animationDelay = "";
+  }
 };
