@@ -143,22 +143,11 @@ body {
   border: 1px solid black;
   border-radius: 5px;
   margin: 2px;
-
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
 }
 
-.box {
-  align-self: flex-end;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  background-color: #f44336;
-  height: 200px;
-  margin: 0 auto 0 auto;
-  transform-origin: bottom;
-  width: 200px;
-}
 .bounce-7 {
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
   animation-name: bounce-7;
   animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);
 }

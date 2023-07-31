@@ -132,6 +132,13 @@ export const mobileDragDrop = (root) => {
           garbage.style.width = "100px";
         }
       }
+
+      const bouncingBoxes = document.querySelectorAll(".bounce-7");
+
+      for (let box of bouncingBoxes) {
+        box.classList.remove("bounce-7");
+        box.style.animationDelay = "";
+      }
     }
   };
 
