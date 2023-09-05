@@ -1,0 +1,139 @@
+@media (max-width: 480px) {
+  body {
+    background-color: #c5e4f0;
+    border: 0.5px solid black;
+    flex-direction: column;
+  }
+
+  .clue-container {
+    height: 20%;
+    width: 95%;
+    border: 0.5px solid black;
+  }
+
+  .inner-clue-container {
+  }
+
+  .word-container {
+    display: flex;
+    padding: 5px;
+    font-size: 20px;
+  }
+
+  .char-div {
+    height: 12px;
+    width: 12px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.5px solid black;
+    border-radius: 2.5px;
+    margin: 0.5px;
+  }
+
+  .game-container {
+    height: 75%;
+    width: 90%;
+    border: 0.5px solid red;
+  }
+
+  .board {
+    height: 235px;
+    width: 235px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    border: 0.5px solid black;
+  }
+
+  .board-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    width: 100%;
+  }
+
+  .dropbox {
+    height: 40px;
+    width: 40px;
+    margin: auto;
+    border-radius: 5px;
+    border: 0.5px solid black;
+  }
+
+  .dragbox-outer-container {
+    height: 170px;
+    width: 90%;
+    border: 0.5px solid blue;
+  }
+
+  .dragbox-top-container,
+  .dragbox-mid-container,
+  .dragbox-bottom-container {
+    width: 100%;
+    border: 0.5px solid purple;
+  }
+
+  .garbage-icon,
+  .clear-board-button,
+  .generate-board {
+    border-radius: 10px;
+    height: 40px;
+    width: 40px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dragbox-cont {
+    width: 24px;
+    height: 24px;
+    border: 0.5px solid red;
+  }
+
+  .dragbox {
+    height: 18px;
+    width: 18px;
+    border-radius: 4px;
+    font-size: 15px;
+
+    text-shadow: 0px 0.7px white;
+    box-shadow: 1px 1px 3px #000, inset 0 0 8px #fff;
+    border: 0.5px solid black;
+  }
+
+  .bounce-7 {
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-name: bounce-7;
+    animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);
+  }
+  @keyframes bounce-7 {
+    0% {
+      transform: scale(1, 1) translateY(0);
+    }
+    10% {
+      transform: scale(1.1, 0.9) translateY(0);
+    }
+    30% {
+      transform: scale(0.9, 1.1) translateY(-6px);
+    }
+    50% {
+      transform: scale(1.05, 0.95) translateY(0);
+    }
+    57% {
+      transform: scale(1, 1) translateY(-6px);
+    }
+    64% {
+      transform: scale(1, 1) translateY(0);
+    }
+    100% {
+      transform: scale(1, 1) translateY(0);
+    }
+  }
+}

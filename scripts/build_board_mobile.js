@@ -34,6 +34,11 @@ export const mobileDragDrop = (root) => {
       currentTile.classList.add("dragging-cell");
     } else {
       avail = "";
+
+      const bouncingBoxes = document.querySelectorAll(".bounce-7");
+      for (let box of bouncingBoxes) {
+        box.classList.remove("bounce-7");
+      }
     }
 
     if (currentTile.className === "clear-board-button") {
@@ -125,11 +130,11 @@ export const mobileDragDrop = (root) => {
           grbR > drgR &&
           currentTile.parentNode.className !== "dragbox-cont"
         ) {
-          garbage.style.height = "200px";
-          garbage.style.width = "200px";
+          garbage.style.height = "60px";
+          garbage.style.width = "60px";
         } else {
-          garbage.style.height = "100px";
-          garbage.style.width = "100px";
+          garbage.style.height = "40px";
+          garbage.style.width = "40px";
         }
       }
 
@@ -205,8 +210,8 @@ export const mobileDragDrop = (root) => {
           lastDropbox.removeChild(lastDropbox.lastElementChild);
         }
 
-        garbage.style.height = "100px";
-        garbage.style.width = "100px";
+        garbage.style.height = "40px";
+        garbage.style.width = "40px";
 
         //check to see if all question marks removed to remove generate board button
         if (

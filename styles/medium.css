@@ -1,0 +1,39 @@
+@media (min-width: 480px) and (max-width: 767px) {
+  body {
+    background-color: coral;
+  }
+  .board {
+    width: 275px;
+    height: 275px;
+  }
+
+  .dropbox {
+    margin: auto;
+    height: 40px;
+    width: 40px;
+  }
+
+  .dragbox-top-container,
+  .dragbox-mid-container,
+  .dragbox-bottom-container {
+    height: 50px;
+  }
+
+  .garbage-icon,
+  .clear-board-button,
+  .generate-board {
+    height: 45px;
+    width: 45px;
+  }
+
+  .dragbox-cont {
+    height: 40px;
+  }
+
+  .dragbox {
+    border-radius: 5px;
+    height: 25px;
+    width: 25px;
+    font-size: 18px;
+  }
+}
