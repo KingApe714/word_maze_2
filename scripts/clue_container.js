@@ -10,6 +10,9 @@ export const populateClueContainer = (dropboxes, root) => {
     clueContainer.removeChild(clueContainer.firstChild);
   }
 
+  const canvasDrawLine = document.querySelector(".draw-line");
+  const ctx = canvasDrawLine.getContext("2d");
+
   const ancestoryMatrix = [];
   let innerArray = [];
   //need to convert this into a 5 x 5 ancestoryMatrix
@@ -79,6 +82,8 @@ export const populateClueContainer = (dropboxes, root) => {
             matrixDiv.style.animationDelay = `${idx * 0.095}s`;
             charDiv.classList.add("bounce-7");
             charDiv.style.animationDelay = `${idx * 0.095}s`;
+
+            ctx;
           });
         }
       },
