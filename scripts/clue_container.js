@@ -53,46 +53,54 @@ export const populateClueContainer = (dropboxes, root) => {
         tile.id === "question-mark" ? "#e69122" : "#31d2b1";
       charDiv.innerHTML = tile.innerHTML;
 
+      wordContainer.addEventListener(
+        "touchstart",
+        () => animateWord(path, wordContainer),
+        {
+          passive: false,
+        }
+      );
+
+      wordContainer.addEventListener("mousedown", () =>
+        animateWord(path, wordContainer)
+      );
+
       wordContainer.appendChild(charDiv);
     });
-
-    wordContainer.addEventListener(
-      "touchstart",
-      (e) => {
-        // remove the animation if any other path has it
-        const bouncingBoxes = document.querySelectorAll(".bounce-7");
-        let myAni;
-
-        for (let box of bouncingBoxes) {
-          cancelAnimationFrame(myAni);
-          box.classList.remove("bounce-7");
-          box.style.animationDelay = "";
-        }
-
-        requestAnimationFrame(mover);
-
-        // I can simply loop through the path as it has the coordinates that I need
-        function mover() {
-          Array.from(path).forEach((coord, idx) => {
-            const [pathI, pathJ] = coord.split(",").map((ele) => Number(ele));
-            const matrixDiv = ancestoryMatrix[pathI][pathJ].dropbox.firstChild;
-            const charDiv = wordContainer.children[idx];
-
-            matrixDiv.classList.add("bounce-7");
-            matrixDiv.style.animationDelay = `${idx * 0.095}s`;
-            charDiv.classList.add("bounce-7");
-            charDiv.style.animationDelay = `${idx * 0.095}s`;
-
-            ctx;
-          });
-        }
-      },
-      { passive: false }
-    );
 
     node.wordContainer = wordContainer;
     innerClueContainer.appendChild(wordContainer);
   }
+
+  const animateWord = (path, wordContainer) => {
+    // remove the animation if any other path has it
+    const bouncingBoxes = document.querySelectorAll(".bounce-7");
+    let myAni;
+
+    for (let box of bouncingBoxes) {
+      cancelAnimationFrame(myAni);
+      box.classList.remove("bounce-7");
+      box.style.animationDelay = "";
+    }
+
+    requestAnimationFrame(mover);
+
+    // I can simply loop through the path as it has the coordinates that I need
+    function mover() {
+      Array.from(path).forEach((coord, idx) => {
+        const [pathI, pathJ] = coord.split(",").map((ele) => Number(ele));
+        const matrixDiv = ancestoryMatrix[pathI][pathJ].dropbox.firstChild;
+        const charDiv = wordContainer.children[idx];
+
+        matrixDiv.classList.add("bounce-7");
+        matrixDiv.style.animationDelay = `${idx * 0.095}s`;
+        charDiv.classList.add("bounce-7");
+        charDiv.style.animationDelay = `${idx * 0.095}s`;
+
+        ctx;
+      });
+    }
+  };
 
   //re-append the innerClueContainer
   clueContainer.appendChild(innerClueContainer);
