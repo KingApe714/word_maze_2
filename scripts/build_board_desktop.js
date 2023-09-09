@@ -5,8 +5,26 @@ export const desktopDragDrop = (root) => {
   const dragboxTopContainer = document.querySelector(".dragbox-top-container");
   const dropboxes = Array.from(document.querySelectorAll(".dropbox"));
   const dragboxes = document.querySelectorAll(".dragbox");
+  const clearBoard = document.querySelector(".clear-board-button");
+  const clueContainer = document.querySelector(".clue-container");
   const garbage = document.querySelector(".garbage-icon");
   let currentTile;
+
+  clearBoard.addEventListener("mousedown", () => {
+    for (let dropbox of dropboxes) {
+      if (dropbox.firstElementChild) {
+        dropbox.removeChild(dropbox.firstElementChild);
+      }
+    }
+
+    if (clueContainer.firstElementChild) {
+      clueContainer.removeChild(clueContainer.firstElementChild);
+    }
+
+    if (dragboxTopContainer.lastElementChild.className === "generate-board") {
+      dragboxTopContainer.removeChild(dragboxTopContainer.lastElementChild);
+    }
+  });
 
   for (let dragbox of dragboxes) {
     dragbox.addEventListener("dragstart", () => {
@@ -78,13 +96,15 @@ export const desktopDragDrop = (root) => {
   }
 
   //logic for dragging over the trash bin
+  const garbageWidth = garbage.style.width;
 
   garbage.addEventListener("dragover", (e) => {
     e.preventDefault();
 
     if (currentTile.parentNode.className === "dropbox") {
-      garbage.style.width = "200px";
-      garbage.style.height = "200px";
+      console.log(garbage.style.width);
+      garbage.style.width = "80px";
+      garbage.style.height = "80px";
     }
   });
 
@@ -92,8 +112,8 @@ export const desktopDragDrop = (root) => {
     e.preventDefault();
 
     if (currentTile.parentNode.className === "dropbox") {
-      garbage.style.width = "100px";
-      garbage.style.height = "100px";
+      garbage.style.width = garbageWidth;
+      garbage.style.height = garbageWidth;
       garbage.appendChild(currentTile);
       garbage.removeChild(garbage.lastElementChild);
     }
