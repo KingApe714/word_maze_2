@@ -155,6 +155,10 @@ body {
   border-radius: 10px;
 }
 
+.generate-board {
+  background-color: #e69122;
+}
+
 .char-div {
   height: 15px;
   width: 15px;
