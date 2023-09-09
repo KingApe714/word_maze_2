@@ -1,4 +1,4 @@
-import { populateClueContainer } from "./clue_container.js";
+import { clearClueContainer, populateClueContainer } from "./clue_container.js";
 import { generateBoard } from "./find_words.js";
 
 export const desktopDragDrop = (root) => {
@@ -11,19 +11,7 @@ export const desktopDragDrop = (root) => {
   let currentTile;
 
   clearBoard.addEventListener("mousedown", () => {
-    for (let dropbox of dropboxes) {
-      if (dropbox.firstElementChild) {
-        dropbox.removeChild(dropbox.firstElementChild);
-      }
-    }
-
-    if (clueContainer.firstElementChild) {
-      clueContainer.removeChild(clueContainer.firstElementChild);
-    }
-
-    if (dragboxTopContainer.lastElementChild.className === "generate-board") {
-      dragboxTopContainer.removeChild(dragboxTopContainer.lastElementChild);
-    }
+    clearClueContainer(dropboxes, clueContainer, dragboxTopContainer);
   });
 
   for (let dragbox of dragboxes) {

@@ -1,4 +1,4 @@
-import { populateClueContainer } from "./clue_container.js";
+import { populateClueContainer, clearClueContainer } from "./clue_container.js";
 import { generateBoard } from "./find_words.js";
 
 export const mobileDragDrop = (root) => {
@@ -42,19 +42,7 @@ export const mobileDragDrop = (root) => {
     }
 
     if (currentTile.className === "clear-board-button") {
-      for (let dropbox of dropboxes) {
-        if (dropbox.firstElementChild) {
-          dropbox.removeChild(dropbox.firstElementChild);
-        }
-      }
-
-      if (clueContainer.firstElementChild) {
-        clueContainer.removeChild(clueContainer.firstElementChild);
-      }
-
-      if (dragboxTopContainer.lastElementChild.className === "generate-board") {
-        dragboxTopContainer.removeChild(dragboxTopContainer.lastElementChild);
-      }
+      clearClueContainer(dropboxes, clueContainer, dragboxTopContainer);
     }
   };
 
@@ -130,11 +118,11 @@ export const mobileDragDrop = (root) => {
           grbR > drgR &&
           currentTile.parentNode.className !== "dragbox-cont"
         ) {
+          garbage.style.height = "80px";
+          garbage.style.width = "80px";
+        } else {
           garbage.style.height = "60px";
           garbage.style.width = "60px";
-        } else {
-          garbage.style.height = "40px";
-          garbage.style.width = "40px";
         }
       }
 
@@ -210,8 +198,8 @@ export const mobileDragDrop = (root) => {
           lastDropbox.removeChild(lastDropbox.lastElementChild);
         }
 
-        garbage.style.height = "40px";
-        garbage.style.width = "40px";
+        garbage.style.height = "60px";
+        garbage.style.width = "60px";
 
         //check to see if all question marks removed to remove generate board button
         if (

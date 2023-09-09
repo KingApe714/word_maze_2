@@ -105,3 +105,23 @@ export const populateClueContainer = (dropboxes, root) => {
   //re-append the innerClueContainer
   clueContainer.appendChild(innerClueContainer);
 };
+
+export const clearClueContainer = (
+  dropboxes,
+  clueContainer,
+  dragboxTopContainer
+) => {
+  for (let dropbox of dropboxes) {
+    if (dropbox.firstElementChild) {
+      dropbox.removeChild(dropbox.firstElementChild);
+    }
+  }
+
+  if (clueContainer.firstElementChild) {
+    clueContainer.removeChild(clueContainer.firstElementChild);
+  }
+
+  if (dragboxTopContainer.lastElementChild.className === "generate-board") {
+    dragboxTopContainer.removeChild(dragboxTopContainer.lastElementChild);
+  }
+};
